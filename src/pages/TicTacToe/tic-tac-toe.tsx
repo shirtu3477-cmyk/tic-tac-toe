@@ -1,12 +1,12 @@
 import Confetti from "react-confetti";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useStyles } from "./tic-tac-toe.style";
 import { Box, Typography } from "@mui/material";
-import Board from "../../components/Board/Board";
+import Board from "../../components/Board/board";
 import { isGameEnded } from "./tic-tac-toe.utility";
 import { PlayerType } from "../../consts/playertype";
-import History from "../../components/History/History";
-import type { HistoryTurn } from "../../components/History/History.type";
+import History from "../../components/History/history";
+import type { HistoryTurn } from "../../components/History/history.type";
 
 const TicTacToe: React.FC = () => {
   const styles = useStyles();
@@ -16,37 +16,43 @@ const TicTacToe: React.FC = () => {
     Array(9).fill(null),
   ]);
   const board = historyBoards[historyBoards.length - 1];
-  
+
   const TURNS = [PlayerType.O, PlayerType.X];
   const turn = TURNS[historyBoards.length % 2];
-  
-  let history: HistoryTurn[] = [];
-  historyBoards.forEach((curr, index) => {
-    const prev = historyBoards[index - 1];
-    curr.forEach((cell, i) => {
-      
-      if (cell && prev && prev[i] != cell) {
-        history.push({
-          id: index,
-          player: cell,
-          x: Math.floor(i / 3),
-          y: i % 3,
+
+  const history: HistoryTurn[] = useMemo(() => {
+    if (historyBoards.length <= 1) {
+      return [];
+    } else {
+      const h: HistoryTurn[] = [];
+      historyBoards.forEach((curr, index) => {
+        const prev = historyBoards[index - 1];
+        curr.forEach((cell, i) => {
+          if (cell && prev && prev[i] != cell) {
+            h.push({
+              id: index,
+              player: cell,
+              x: Math.floor(i / 3),
+              y: i % 3,
+            });
+          }
         });
-      }
-    });
-  });
+      });
+      return h;
+    }
+  }, [historyBoards]);
 
   const handleTurn = (boxId: number): void => {
-    if (!board[boxId]) {
-      const updatedBoard = [...board];
-      updatedBoard[boxId] = turn;
-      const updatedHistory = [...historyBoards];
-      updatedHistory.push(updatedBoard);
-      setHistoryBoards(updatedHistory);
-      const result = isGameEnded(updatedBoard);
+    if (board[boxId]) return;
 
-      if (result) endGame(result);
-    }
+    const updatedBoard = [...board];
+    updatedBoard[boxId] = turn;
+    const updatedHistory = [...historyBoards];
+    updatedHistory.push(updatedBoard);
+    setHistoryBoards(updatedHistory);
+    const result = isGameEnded(updatedBoard); // return an object
+
+    if (result) endGame(result);
   };
 
   const endGame = (result: PlayerType | true): void => {
@@ -67,7 +73,6 @@ const TicTacToe: React.FC = () => {
   const setGameToPreviousMove = (index: number): void => {
     const updatedHistory = historyBoards.slice(0, index + 1);
     setHistoryBoards(updatedHistory);
-
     setGameOver(false);
     setMessage("");
   };

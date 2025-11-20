@@ -1,5 +1,5 @@
 import React from "react";
-import { useStyles } from "./Board.style";
+import { useStyles } from "./board.style";
 import { playerColor } from "../../styles/theme";
 import { PlayerType } from "../../consts/playertype";
 import { ButtonBase, GridLegacy as Grid, Box, Button } from "@mui/material";

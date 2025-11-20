@@ -1,6 +1,6 @@
 import React from "react";
-import { useStyles } from "./History.style";
-import type { HistoryTurn } from "./History.type";
+import { useStyles } from "./history.style";
+import type { HistoryTurn } from "./history.type";
 import { Typography, Box, Button } from "@mui/material";
 
 interface IHistoryProps {
