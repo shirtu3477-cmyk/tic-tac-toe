@@ -8,7 +8,7 @@ import { PlayerType } from "../../consts/playertype";
 import History from "../../components/History/History";
 import type { HistoryTurn } from "../../components/History/History.type";
 
-const TicTacToe = () => {
+const TicTacToe: React.FC = () => {
   const styles = useStyles();
   const [message, setMessage] = useState<string>("");
   const [isGameOver, setGameOver] = useState<boolean>(false);

@@ -19,6 +19,5 @@ export const useStyles = () =>
       height: 200,
       fontSize: 80,
       userSelect: "none",
-    //   color:'#d64584ff'
     },
   });
