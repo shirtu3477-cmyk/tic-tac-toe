@@ -1,4 +1,4 @@
 export enum PlayerType {
     X = "X",
-    Y = "Y"
+    O = "O"
 }

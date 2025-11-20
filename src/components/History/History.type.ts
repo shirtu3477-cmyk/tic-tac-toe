@@ -1,4 +1,4 @@
-import type { PlayerType } from "../../types";
+import type { PlayerType } from "../../consts/playertype";
 
 export interface HistoryTurn {
   id: number;

@@ -6,7 +6,7 @@ export const useStyles = () =>
       display: "flex",
     },
     resetBtn: {
-      mr:5
+      marginRight:10
     },
     grid: {
       width: 600,
@@ -19,5 +19,6 @@ export const useStyles = () =>
       height: 200,
       fontSize: 80,
       userSelect: "none",
+    //   color:'#d64584ff'
     },
   });

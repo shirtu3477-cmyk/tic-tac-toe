@@ -3,10 +3,10 @@ import { createStyles } from "../../styles/create-styles";
 export const useStyles = () =>
   createStyles({
     box: {
-      mx: 10,
-      width: 200,
+      margin: 10,
+      width: 250,
     },
     title:{
-        color:'68a1b8ff'
+        color:'#68a1b8ff'
     }
   });

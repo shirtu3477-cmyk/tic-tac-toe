@@ -13,11 +13,11 @@ export const useStyles = () =>
       height: 1000,
     },
     title: {
-      color: "68a1b8ff",
+      color: "#68a1b8ff",
       mb: 4,
     },
     displayMessage: {
-      color: "8de3d2",
+      color: "#8de3d2",
       mt: 4,
     },
     game: {
